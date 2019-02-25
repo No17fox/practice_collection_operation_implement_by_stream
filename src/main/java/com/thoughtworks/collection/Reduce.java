@@ -81,6 +81,11 @@ public class Reduce {
     }
 
     public int getIndexOfLastOdd() {
-        throw new NotImplementedException();
+        for (int i = this.arrayList.size() - 1; i < this.arrayList.size(); i--) {
+            if (1 == this.arrayList.get(i) % 2) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
