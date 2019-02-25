@@ -29,7 +29,11 @@ public class Reduce {
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        double summary = 0;
+        for (Integer integer : this.arrayList) {
+            summary += integer;
+        }
+        return summary / this.arrayList.size();
     }
 
     public double getOrderedMedian() {
