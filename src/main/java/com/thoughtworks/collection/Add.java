@@ -3,6 +3,7 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Add {
@@ -117,7 +118,20 @@ public class Add {
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> evens = new ArrayList<>();
+        List<Integer> odds = new ArrayList<>();
+        for (Integer integer : arrayList) {
+            if (0 == integer % 2) {
+                evens.add(integer);
+            } else {
+                odds.add(integer);
+            }
+        }
+        Collections.sort(evens);
+        odds.sort(Collections.reverseOrder());
+        List<Integer> sortedList = new ArrayList<>(evens);
+        sortedList.addAll(odds);
+        return sortedList;
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
