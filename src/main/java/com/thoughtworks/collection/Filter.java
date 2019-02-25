@@ -25,14 +25,32 @@ public class Filter {
     }
 
     public List<Integer> filterMultipleOfThree() {
-        throw new NotImplementedException();
+        List<Integer> filteredList = new ArrayList<>();
+        for (Integer integer : this.array) {
+            if (0 == integer % 3) {
+                filteredList.add(integer);
+            }
+        }
+        return filteredList;
     }
 
     public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        throw new NotImplementedException();
+        List<Integer> filteredList = new ArrayList<>();
+        for (Integer integer : firstList) {
+            if (secondList.contains(integer)) {
+                filteredList.add(integer);
+            }
+        }
+        return filteredList;
     }
 
     public List<Integer> getDifferentElements() {
-        throw new NotImplementedException();
+        List<Integer> filteredList = new ArrayList<>();
+        for (Integer integer : this.array) {
+            if (!filteredList.contains(integer)) {
+                filteredList.add(integer);
+            }
+        }
+        return filteredList;
     }
 }
