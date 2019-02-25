@@ -45,7 +45,12 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        for (Integer integer : this.arrayList) {
+            if (0 == integer % 2) {
+                return integer;
+            }
+        }
+        return -1;
     }
 
     public int getIndexOfFirstEven() {
