@@ -21,11 +21,24 @@ public class CollectionOperator {
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
-        throw new NotImplementedException();
+        List<Integer> list = this.getListByInterval(left, right);
+        List<Integer> evenList = new ArrayList<>();
+        for (Integer integer : list) {
+            if (0 == integer % 2) {
+                evenList.add(integer);
+            }
+        }
+        return evenList;
     }
 
     public List<Integer> popEvenElments(int[] array) {
-        throw new NotImplementedException();
+        List<Integer> evenElements = new ArrayList<>();
+        for (int element : array) {
+            if (0 == element % 2) {
+                evenElements.add(element);
+            }
+        }
+        return evenElements;
     }
 
     public int popLastElment(int[] array) {
