@@ -13,11 +13,19 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        throw new NotImplementedException();
+        int maximum = this.arrayList.get(0);
+        for (Integer integer : this.arrayList) {
+            maximum = (integer.compareTo(maximum) > 0) ? integer : maximum;
+        }
+        return maximum;
     }
 
     public double getMinimum() {
-        throw new NotImplementedException();
+        int minimum = this.arrayList.get(0);
+        for (Integer integer : this.arrayList) {
+            minimum = (integer.compareTo(minimum) < 0) ? integer : minimum;
+        }
+        return minimum;
     }
 
     public double getAverage() {
