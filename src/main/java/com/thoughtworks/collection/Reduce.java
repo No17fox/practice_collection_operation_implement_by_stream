@@ -37,7 +37,11 @@ public class Reduce {
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        int medianPosition = this.arrayList.size() / 2;
+        if (0 == this.arrayList.size() % 2) {
+            return (double)(this.arrayList.get(medianPosition - 1) + this.arrayList.get(medianPosition)) / 2;
+        }
+        return this.arrayList.get(medianPosition);
     }
 
     public int getFirstEven() {
