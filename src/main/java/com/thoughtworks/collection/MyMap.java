@@ -19,7 +19,7 @@ public class MyMap {
 
     public List<Integer> getTriple() {
         List<Integer> tripleArray = new ArrayList<>();
-        for (Integer integer : array) {
+        for (Integer integer : this.array) {
             tripleArray.add(integer * 3);
         }
         return tripleArray;
