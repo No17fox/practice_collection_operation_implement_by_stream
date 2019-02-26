@@ -18,8 +18,8 @@ public class InverseReduce {
 
     public List<Integer> divideToSmaller(int number) {
         List<Integer> list = new ArrayList<>();
-        while (number - 2 > 0) {
-            number -= 2;
+        while (number - this.random.nextInt(3) > 0) {
+            number -= this.random.nextInt(3);
             list.add(number);
         }
         return list;
