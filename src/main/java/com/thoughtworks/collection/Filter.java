@@ -5,6 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Filter {
 
@@ -16,12 +17,13 @@ public class Filter {
 
     public List<Integer> filterEven() {
         List<Integer> evenList = new ArrayList<>();
-        for (Integer integer : this.array) {
-            if (0 == integer % 2) {
-                evenList.add(integer);
-            }
-        }
-        return evenList;
+//        for (Integer integer : this.array) {
+//            if (0 == integer % 2) {
+//                evenList.add(integer);
+//            }
+//        }
+//        return evenList;
+        return this.array.stream().filter(item -> item % 2 == 0).collect(Collectors.toList());
     }
 
     public List<Integer> filterMultipleOfThree() {

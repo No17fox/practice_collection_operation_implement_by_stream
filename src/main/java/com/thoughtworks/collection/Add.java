@@ -90,15 +90,11 @@ public class Add {
     }
 
     public double getAverageOfEvenIndex(List<Integer> arrayList) {
-        int summayOfEven = 0;
-        int numberOfEven = 0;
-        for (Integer integer : arrayList) {
-            if (0 == integer % 2) {
-                summayOfEven += integer;
-                numberOfEven++;
-            }
+        int summaryOfEvenIndexElements = 0;
+        for (int i = 0; i < arrayList.size(); i = i + 2) {
+            summaryOfEvenIndexElements += arrayList.get(i);
         }
-        return summayOfEven / numberOfEven;
+        return summaryOfEvenIndexElements / Math.ceil(arrayList.size() / 2.0);
     }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
