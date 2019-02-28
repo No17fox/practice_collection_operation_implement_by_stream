@@ -1,5 +1,7 @@
 package com.thoughtworks.collection;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Reduce {
@@ -11,33 +13,31 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        int maximum = this.arrayList.get(0);
-        for (Integer integer : this.arrayList) {
-            maximum = (integer.compareTo(maximum) > 0) ? integer : maximum;
-        }
-        return maximum;
+//        int maximum = this.arrayList.get(0);
+//        for (Integer integer : this.arrayList) {
+//            maximum = integer.compareTo(maximum) > 0 ? integer : maximum;
+//        }
+//        return maximum;
+        return this.arrayList.stream().max(Comparator.comparing(Integer::valueOf)).get();
     }
 
     public double getMinimum() {
-        int minimum = this.arrayList.get(0);
-        for (Integer integer : this.arrayList) {
-            minimum = (integer.compareTo(minimum) < 0) ? integer : minimum;
-        }
-        return minimum;
+        return this.arrayList.stream().min(Comparator.comparing(Integer::valueOf)).get();
     }
 
     public double getAverage() {
-        double summary = 0;
-        for (Integer integer : this.arrayList) {
-            summary += integer;
-        }
+//        double summary = 0;
+//        for (Integer integer : this.arrayList) {
+//            summary += integer;
+//        }
+        double summary = this.arrayList.stream().reduce(0, (acc, cur) -> acc + cur);
         return summary / this.arrayList.size();
     }
 
     public double getOrderedMedian() {
         int medianPosition = this.arrayList.size() / 2;
         if (0 == this.arrayList.size() % 2) {
-            return (double)(this.arrayList.get(medianPosition - 1) + this.arrayList.get(medianPosition)) / 2;
+            return (this.arrayList.get(medianPosition - 1) + this.arrayList.get(medianPosition)) / 2.0;
         }
         return this.arrayList.get(medianPosition);
     }
@@ -61,11 +61,14 @@ public class Reduce {
     }
 
     public boolean isEqual(List<Integer> arrayList) {
-        boolean result = true;
-        for (Integer integer : this.arrayList) {
-            result = result && arrayList.contains(integer);
-        }
-        return result;
+//        boolean result = true;
+//        for (Integer integer : this.arrayList) {
+//            result = result && arrayList.contains(integer);
+//        }
+//        return result;
+        List<Integer> list = new ArrayList<>(this.arrayList);
+        list.retainAll(arrayList);
+        return list.size() == this.arrayList.size();
     }
 
     //实现接口SingleLink，然后再此函数内使用
