@@ -1,12 +1,14 @@
 package com.thoughtworks.collection;
 
-import java.util.Arrays;
-
 public class SingleLinkImpl<T> implements SingleLink {
-    private T[] t;
+    private LinkNode<T> head;
+    private LinkNode<T> tail;
+    private int size = 0;
 
-    public void setT(T[] t) {
-        this.t = t;
+    public SingleLinkImpl() {
+        this.head = new LinkNode<T>();
+        this.head.setNext(null);
+        this.tail = this.head;
     }
 
     @Override
@@ -14,7 +16,7 @@ public class SingleLinkImpl<T> implements SingleLink {
         if (this.isEmpty()) {
             return null;
         }
-        return t[0];
+        return this.head.getData();
     }
 
     @Override
@@ -22,17 +24,17 @@ public class SingleLinkImpl<T> implements SingleLink {
         if (this.isEmpty()) {
             return null;
         }
-        return t[this.size() - 1];
+        return this.tail.getData();
     }
 
     @Override
     public int size() {
-        return this.t.length;
+        return this.size;
     }
 
     @Override
     public boolean isEmpty() {
-        return 0 == this.size();
+        return null == this.head.getData();
     }
 
     @Override
@@ -40,8 +42,8 @@ public class SingleLinkImpl<T> implements SingleLink {
         if (this.isEmpty()) {
             return false;
         }
-        T[] arrayT = Arrays.copyOfRange(this.t, 1, this.size());
-        this.t = arrayT;
+        this.head = this.head.getNext();
+        this.size--;
         return true;
     }
 
@@ -50,30 +52,54 @@ public class SingleLinkImpl<T> implements SingleLink {
         if (this.isEmpty()) {
             return false;
         }
-        T[] arrayT = Arrays.copyOfRange(this.t, 0, this.size() - 1);
-        this.t = arrayT;
+        LinkNode node = this.head;
+        while (node.getNext() != this.tail) {
+            node = node.getNext();
+        }
+        node.setNext(null);
+        this.tail = node;
+        size--;
         return true;
     }
 
     @Override
     public void addHeadPointer(Object item) {
-        T[] arrayT = (T[]) new Object[this.size() + 1];
-        arrayT[0] = (T) item;
-        for (int i = 0; i < this.t.length; i++) {
-            arrayT[i + 1] = this.t[i];
+        LinkNode<T> node = new LinkNode<>((T) item);
+        if (this.isEmpty()) {
+            this.head = node;
+            this.tail = this.head;
+        } else {
+            LinkNode<T> oldHead = this.head;
+            node.setNext(oldHead);
+            this.head = node;
         }
-        this.t = arrayT;
+        this.size++;
     }
 
     @Override
     public void addTailPointer(Object item) {
-        T[] arrayT = Arrays.copyOf(this.t, this.size() + 1);
-        arrayT[this.size()] = (T) item;
-        this.t = arrayT;
+        LinkNode<T> node = new LinkNode<>((T)item);
+        if (this.isEmpty()) {
+            this.head = node;
+            this.tail = this.head;
+        } else {
+            this.tail.setNext(node);
+            this.tail = node;
+        }
+        this.size++;
     }
 
     @Override
     public Object getNode(int index) {
-        return this.t[index];
+        if (this.isEmpty()) {
+            return null;
+        }
+        int position = 1;
+        LinkNode node = this.head;
+        while (position != index) {
+            node = node.getNext();
+            position++;
+        }
+        return node.getData();
     }
 }
