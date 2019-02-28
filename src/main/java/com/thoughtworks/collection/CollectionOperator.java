@@ -5,6 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
@@ -23,13 +24,7 @@ public class CollectionOperator {
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
         List<Integer> list = this.getListByInterval(left, right);
-        List<Integer> evenList = new ArrayList<>();
-        for (Integer integer : list) {
-            if (0 == integer % 2) {
-                evenList.add(integer);
-            }
-        }
-        return evenList;
+        return list.stream().filter(item -> 0 == item % 2).collect(Collectors.toList());
     }
 
     public List<Integer> popEvenElments(int[] array) {
@@ -60,11 +55,8 @@ public class CollectionOperator {
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
         List<Integer> firstList = new ArrayList<>(Arrays.asList(firstArray));
-        for (Integer integer : secondArray) {
-            if (!firstList.contains(integer)) {
-                firstList.add(integer);
-            }
-        }
-        return firstList;
+        List<Integer> secondList = new ArrayList<>(Arrays.asList(secondArray));
+        firstList.addAll(secondList);
+        return firstList.stream().distinct().collect(Collectors.toList());
     }
 }
