@@ -5,6 +5,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
@@ -48,11 +50,12 @@ public class Add {
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
-        int summary = 0;
-        for (Integer integer : arrayList) {
-            summary += integer * 3 + 2;
-        }
-        return summary;
+//        int summary = 0;
+//        for (Integer integer : arrayList) {
+//            summary += integer * 3 + 2;
+//        }
+//        return summary;
+        return arrayList.stream().reduce(0, (acc, cur) -> acc + cur * 3 + 2);
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
@@ -68,13 +71,7 @@ public class Add {
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
-        int summary = 0;
-        for (Integer integer : arrayList) {
-            if (1 == integer % 2) {
-                summary += integer * 3 + 5;
-            }
-        }
-        return summary;
+        return arrayList.stream().filter(item -> 1 == item % 2).reduce(0, (acc, cur) -> acc + cur * 3 + 5);
     }
 
     public double getMedianOfEvenIndex(List<Integer> arrayList) {
@@ -84,7 +81,7 @@ public class Add {
         }
         int medianPosition = evenIndexList.size() / 2;
         if (0 == evenIndexList.size() % 2) {
-            return (double)(evenIndexList.get(medianPosition) + evenIndexList.get(medianPosition - 1)) / 2;
+            return (evenIndexList.get(medianPosition) + evenIndexList.get(medianPosition - 1)) / 2.0;
         }
         return evenIndexList.get(medianPosition);
     }
@@ -102,30 +99,16 @@ public class Add {
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
-        List<Integer> newArrayList = new ArrayList<>();
-        for (Integer integer : arrayList) {
-            if ((0 == integer % 2) && !newArrayList.contains(integer)) {
-                newArrayList.add(integer);
-            }
-        }
-        return newArrayList;
+        return arrayList.stream().filter(item -> 0 == item % 2).distinct().collect(Collectors.toList());
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-        List<Integer> evens = new ArrayList<>();
-        List<Integer> odds = new ArrayList<>();
-        for (Integer integer : arrayList) {
-            if (0 == integer % 2) {
-                evens.add(integer);
-            } else {
-                odds.add(integer);
-            }
-        }
+        List<Integer> evens = arrayList.stream().filter(item -> 0 == item % 2).collect(Collectors.toList());
+        List<Integer> odds = arrayList.stream().filter(item -> 1 == item % 2).collect(Collectors.toList());
         Collections.sort(evens);
         odds.sort(Collections.reverseOrder());
-        List<Integer> sortedList = new ArrayList<>(evens);
-        sortedList.addAll(odds);
-        return sortedList;
+        evens.addAll(odds);
+        return evens;
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
