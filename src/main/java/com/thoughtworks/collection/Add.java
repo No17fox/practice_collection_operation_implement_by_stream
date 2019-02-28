@@ -78,17 +78,15 @@ public class Add {
     }
 
     public double getMedianOfEvenIndex(List<Integer> arrayList) {
-        List<Integer> evenList = new ArrayList<>();
-        for (Integer integer : arrayList) {
-            if (0 == integer % 2) {
-                evenList.add(integer);
-            }
+        List<Integer> evenIndexList = new ArrayList<>();
+        for (int i = 0; i < arrayList.size(); i = i + 2) {
+            evenIndexList.add(arrayList.get(i));
         }
-        int medianPosition = evenList.size() / 2;
-        if (0 == evenList.size() % 2) {
-            return (double)(evenList.get(medianPosition) + evenList.get(medianPosition - 1)) / 2;
+        int medianPosition = evenIndexList.size() / 2;
+        if (0 == evenIndexList.size() % 2) {
+            return (double)(evenIndexList.get(medianPosition) + evenIndexList.get(medianPosition - 1)) / 2;
         }
-        return evenList.get(medianPosition);
+        return evenIndexList.get(medianPosition);
     }
 
     public double getAverageOfEvenIndex(List<Integer> arrayList) {
