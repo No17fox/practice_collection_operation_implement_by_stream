@@ -73,12 +73,10 @@ public class Reduce {
 
     //实现接口SingleLink，然后再此函数内使用
     public Double getMedianInLinkList(SingleLink<Integer> singleLink) {
-        this.arrayList.forEach(singleLink::addTailPointer);
-        int medianPosition = (int) Math.ceil(singleLink.size() / 2.0);
-        if (0 == singleLink.size() % 2) {
-            return (singleLink.getNode(medianPosition) + singleLink.getNode(medianPosition + 1)) / 2.0;
+        for (Integer integer : this.arrayList) {
+            singleLink.addTailPointer(integer);
         }
-        return (double) singleLink.getNode(medianPosition);
+        return this.getOrderedMedian();
     }
 
     public int getLastOdd() {
