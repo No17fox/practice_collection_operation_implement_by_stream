@@ -6,20 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
-        List<Integer> list = new ArrayList<>();
-        list.add(left);
-        while (left != right) {
-            if (left < right) {
-                left++;
-            } else {
-                left--;
-            }
-            list.add(left);
+        if (left < right) {
+            return Stream.iterate(left, i -> i + 1).limit(right - left + 1).collect(Collectors.toList());
+        } else {
+            return Stream.iterate(left, i -> i - 1).limit(left - right + 1).collect(Collectors.toList());
         }
-        return list;
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
