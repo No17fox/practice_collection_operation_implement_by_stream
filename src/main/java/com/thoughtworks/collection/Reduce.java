@@ -3,6 +3,8 @@ package com.thoughtworks.collection;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Reduce {
 
@@ -30,8 +32,11 @@ public class Reduce {
 //        for (Integer integer : this.arrayList) {
 //            summary += integer;
 //        }
-        double summary = this.arrayList.stream().reduce(0, (acc, cur) -> acc + cur);
-        return summary / this.arrayList.size();
+
+//        double summary = this.arrayList.stream().reduce(0, (acc, cur) -> acc + cur);
+
+        int summary = this.arrayList.stream().mapToInt(Integer::valueOf).sum();
+        return (double) summary / this.arrayList.size();
     }
 
     public double getOrderedMedian() {
