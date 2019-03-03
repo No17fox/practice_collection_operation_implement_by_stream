@@ -40,18 +40,12 @@ public class Add {
             leftBorder = rightBorder;
             rightBorder = temp;
         }
-        if (0 == leftBorder % 2) {
-            leftBorder++;
-        }
-        if (0 == rightBorder % 2) {
-            rightBorder--;
-        }
-        int summary = 0;
-        while (leftBorder <= rightBorder) {
-            summary += leftBorder;
-            leftBorder += 2;
-        }
-        return summary;
+        return Stream.iterate(leftBorder, i -> i + 1)
+                .limit(rightBorder - leftBorder + 1)
+                .filter(item -> 1 == item % 2)
+                .mapToInt(Integer::valueOf)
+                .sum();
+
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
