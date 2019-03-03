@@ -15,18 +15,23 @@ public class Add {
             leftBorder = rightBorder;
             rightBorder = temp;
         }
-        if (1 == leftBorder % 2) {
-            leftBorder++;
-        }
-        if (1 == rightBorder % 2) {
-            rightBorder--;
-        }
-        int summary = 0;
-        while (leftBorder <= rightBorder) {
-            summary += leftBorder;
-            leftBorder += 2;
-        }
-        return summary;
+//        if (1 == leftBorder % 2) {
+//            leftBorder++;
+//        }
+//        if (1 == rightBorder % 2) {
+//            rightBorder--;
+//        }
+//        int summary = 0;
+//        while (leftBorder <= rightBorder) {
+//            summary += leftBorder;
+//            leftBorder += 2;
+//        }
+//        return summary;
+        return Stream.iterate(leftBorder, i -> i + 1)
+                .limit(rightBorder - leftBorder + 1)
+                .filter(item -> 0 == item % 2)
+                .mapToInt(Integer::valueOf)
+                .sum();
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
