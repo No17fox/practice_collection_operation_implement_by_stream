@@ -61,12 +61,7 @@ public class Reduce {
     }
 
     public int getIndexOfFirstEven() {
-        for (Integer integer : this.arrayList) {
-            if (0 == integer % 2) {
-                return this.arrayList.indexOf(integer);
-            }
-        }
-        return -1;
+        return this.arrayList.indexOf(this.getFirstEven());
     }
 
     public boolean isEqual(List<Integer> arrayList) {
