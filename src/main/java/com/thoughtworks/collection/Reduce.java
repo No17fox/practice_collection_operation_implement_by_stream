@@ -34,9 +34,12 @@ public class Reduce {
 //        }
 
 //        double summary = this.arrayList.stream().reduce(0, (acc, cur) -> acc + cur);
+//        return (double) summary / this.arrayList.size();
 
-        int summary = this.arrayList.stream().mapToInt(Integer::valueOf).sum();
-        return (double) summary / this.arrayList.size();
+//        int summary = this.arrayList.stream().mapToInt(Integer::valueOf).sum();
+//        return (double) summary / this.arrayList.size();
+
+        return this.arrayList.stream().collect(Collectors.averagingDouble(Integer::valueOf));
     }
 
     public double getOrderedMedian() {
