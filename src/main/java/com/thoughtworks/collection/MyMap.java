@@ -17,20 +17,10 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-//        List<Integer> tripleArray = new ArrayList<>();
-//        for (Integer integer : this.array) {
-//            tripleArray.add(integer * 3);
-//        }
-//        return tripleArray;
         return this.array.stream().map(item -> item * 3).collect(Collectors.toList());
     }
 
     public List<String> mapLetter() {
-//        List<String> letterArray = new ArrayList<>();
-//        for (int i = 0; i < this.array.size(); i++) {
-//            letterArray.add(this.letters[i]);
-//        }
-//        return letterArray;
         return this.array.stream().map(item -> this.letters[item - 1]).collect(Collectors.toList());
     }
 

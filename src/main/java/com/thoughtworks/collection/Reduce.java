@@ -1,9 +1,10 @@
 package com.thoughtworks.collection;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Reduce {
@@ -15,11 +16,6 @@ public class Reduce {
     }
 
     public int getMaximum() {
-//        int maximum = this.arrayList.get(0);
-//        for (Integer integer : this.arrayList) {
-//            maximum = integer.compareTo(maximum) > 0 ? integer : maximum;
-//        }
-//        return maximum;
         return this.arrayList.stream().max(Comparator.comparing(Integer::valueOf)).get();
     }
 
@@ -28,17 +24,6 @@ public class Reduce {
     }
 
     public double getAverage() {
-//        double summary = 0;
-//        for (Integer integer : this.arrayList) {
-//            summary += integer;
-//        }
-
-//        double summary = this.arrayList.stream().reduce(0, (acc, cur) -> acc + cur);
-//        return (double) summary / this.arrayList.size();
-
-//        int summary = this.arrayList.stream().mapToInt(Integer::valueOf).sum();
-//        return (double) summary / this.arrayList.size();
-
         return this.arrayList.stream().collect(Collectors.averagingDouble(Integer::valueOf));
     }
 
@@ -65,11 +50,6 @@ public class Reduce {
     }
 
     public boolean isEqual(List<Integer> arrayList) {
-//        boolean result = true;
-//        for (Integer integer : this.arrayList) {
-//            result = result && arrayList.contains(integer);
-//        }
-//        return result;
         List<Integer> list = new ArrayList<>(this.arrayList);
         list.retainAll(arrayList);
         return list.size() == this.arrayList.size();

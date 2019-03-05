@@ -19,12 +19,6 @@ public class InverseReduce {
     }
 
     public List<Integer> divideToSmaller(int number) {
-//        List<Integer> list = new ArrayList<>();
-//        while (number - this.random.nextInt(3) > 0) {
-//            number -= this.random.nextInt(3);
-//            list.add(number);
-//        }
-//        return list;
         int interval = this.random.nextInt(3);
         return Stream.iterate(number - interval, i -> i - interval)
                 .limit(number / interval)

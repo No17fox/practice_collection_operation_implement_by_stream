@@ -16,13 +16,6 @@ public class Filter {
     }
 
     public List<Integer> filterEven() {
-//        List<Integer> evenList = new ArrayList<>();
-//        for (Integer integer : this.array) {
-//            if (0 == integer % 2) {
-//                evenList.add(integer);
-//            }
-//        }
-//        return evenList;
         return this.array.stream().filter(item -> 0 == item % 2).collect(Collectors.toList());
     }
 
@@ -37,13 +30,6 @@ public class Filter {
     }
 
     public List<Integer> getDifferentElements() {
-//        List<Integer> filteredList = new ArrayList<>();
-//        for (Integer integer : this.array) {
-//            if (!filteredList.contains(integer)) {
-//                filteredList.add(integer);
-//            }
-//        }
-//        return filteredList;
         return this.array.stream().distinct().collect(Collectors.toList());
     }
 }
