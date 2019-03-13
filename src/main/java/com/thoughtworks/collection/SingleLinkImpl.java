@@ -58,7 +58,7 @@ public class SingleLinkImpl<T> implements SingleLink {
         }
         node.setNext(null);
         this.tail = node;
-        size--;
+        this.size--;
         return true;
     }
 
