@@ -13,18 +13,12 @@ public class SingleLinkImpl<T> implements SingleLink {
 
     @Override
     public Object getHeaderData() {
-        if (this.isEmpty()) {
-            return null;
-        }
-        return this.head.getData();
+        return this.isEmpty() ? null : this.head.getData();
     }
 
     @Override
     public Object getTailData() {
-        if (this.isEmpty()) {
-            return null;
-        }
-        return this.tail.getData();
+        return this.isEmpty() ? null : this.tail.getData();
     }
 
     @Override
