@@ -41,15 +41,9 @@ public class Add {
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
-        List<Integer> newArrayList = new ArrayList<>();
-        for (Integer integer : arrayList) {
-            if (1 == integer % 2) {
-                newArrayList.add(integer * 3 + 2);
-            } else {
-                newArrayList.add(integer);
-            }
-        }
-        return newArrayList;
+        return arrayList.stream()
+                .map(integer -> 0 == integer % 2 ? integer : integer * 3 + 2)
+                .collect(Collectors.toList());
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
