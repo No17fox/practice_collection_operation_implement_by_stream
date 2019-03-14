@@ -36,12 +36,6 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-//        for (Integer integer : this.arrayList) {
-//            if (0 == integer % 2) {
-//                return integer;
-//            }
-//        }
-//        return -1;
         return this.arrayList.stream().filter(item -> 0 == item % 2).findFirst().get();
     }
 
