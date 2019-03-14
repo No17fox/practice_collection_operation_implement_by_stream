@@ -15,11 +15,7 @@ public class Flaten {
     }
 
     public List<Integer> transformToOneDimesional() {
-        List<Integer> flatenedList = new ArrayList<>();
-        for (Integer[] integers : this.array) {
-            flatenedList.addAll(Arrays.asList(integers));
-        }
-        return flatenedList;
+        return Arrays.stream(this.array).flatMap(Arrays::stream).collect(Collectors.toList());
     }
 
     public List<Integer> transformToUnrepeatedOneDimesional() {
