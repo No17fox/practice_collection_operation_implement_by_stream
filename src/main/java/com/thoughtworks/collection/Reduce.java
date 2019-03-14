@@ -3,6 +3,7 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,20 +57,13 @@ public class Reduce {
     }
 
     public int getLastOdd() {
-        for (int i = this.arrayList.size() - 1; i < this.arrayList.size(); i--) {
-            if (1 == this.arrayList.get(i) % 2) {
-                return this.arrayList.get(i);
-            }
-        }
-        return -1;
+        List<Integer> oddList = this.arrayList.stream()
+                .filter(i -> 1 == i % 2)
+                .collect(Collectors.toList());
+        return oddList.get(oddList.size() - 1);
     }
 
     public int getIndexOfLastOdd() {
-        for (int i = this.arrayList.size() - 1; i < this.arrayList.size(); i--) {
-            if (1 == this.arrayList.get(i) % 2) {
-                return i;
-            }
-        }
-        return -1;
+        return this.arrayList.indexOf(this.getLastOdd());
     }
 }
