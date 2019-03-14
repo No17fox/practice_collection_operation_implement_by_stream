@@ -23,13 +23,7 @@ public class CollectionOperator {
     }
 
     public List<Integer> popEvenElments(int[] array) {
-        List<Integer> evenElements = new ArrayList<>();
-        for (int element : array) {
-            if (0 == element % 2) {
-                evenElements.add(element);
-            }
-        }
-        return evenElements;
+        return Arrays.stream(array).filter(item -> 0 == item % 2).boxed().collect(Collectors.toList());
     }
 
     public int popLastElment(int[] array) {
@@ -37,15 +31,11 @@ public class CollectionOperator {
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
-        List<Integer> commonElements = new ArrayList<>();
-        for (int i : firstArray) {
-            for (int j : secondArray) {
-                if (i == j) {
-                    commonElements.add(i);
-                }
-            }
-        }
-        return commonElements;
+        List<Integer> list = Arrays.stream(firstArray).boxed().collect(Collectors.toList());
+        return Arrays.stream(secondArray)
+                .filter(list::contains)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
